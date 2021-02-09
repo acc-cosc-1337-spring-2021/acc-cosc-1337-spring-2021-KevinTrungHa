@@ -14,7 +14,7 @@ using namespace std;
 //value 5, and multiply num1 and num2, and return their product.
 
 
-int multiply_numbers(int num1);
+int multiply_numbers(int num1)
 {
 	int num2 = 5;
 	return num1*num2;

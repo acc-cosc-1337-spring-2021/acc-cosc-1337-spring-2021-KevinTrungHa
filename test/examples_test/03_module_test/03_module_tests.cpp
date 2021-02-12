@@ -35,3 +35,20 @@ TEST_CASE("Test menu", "Test switch")
 	REQUIRE(menu(4)) == "Option 4");
 	REQUIRE(menu(5)) == "Invalid Option");
 }
+
+
+TEST_CASE("Test number in range 1 to 10". "Given number return true if in range")
+{
+	REQUIRE(is_in_range_1_to_10(0) == false);
+	REQUIRE(is_in_range_1_to_10(5) == true);
+	REQUIRE(is_in_range_1_to_10(11) == false);
+}
+
+
+TEST_CASE("Test number in range 1 to 10". "Given number return true if in range")
+{
+	REQUIRE(is_not_in_range_1_to_10(0)) == true);
+	REQUIRE(is_not_in_range_1_to_10(5)) == false);
+	REQUIRE(is_not_in_range_1_to_10(11)) == true);
+
+}

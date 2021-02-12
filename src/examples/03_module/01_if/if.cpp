@@ -23,3 +23,12 @@ bool is_even(int num)
 //hours over 40, false otherwise
 
 
+bool is_in_range_1_to_10(int num)
+{
+    return num >= 1 && num <= 10;
+}
+
+bool is_in_range_1_to_10(int num)
+{
+    return (!(num >= 1 && num <= 10)); //and
+}

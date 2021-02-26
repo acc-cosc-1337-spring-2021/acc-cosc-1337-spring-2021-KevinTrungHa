@@ -21,6 +21,7 @@ TEST_CASE ("Test get letter grade using if function")
 }
 
 
+
 // test get_letter_grade_using_switch function
 TEST_CASE ("Test get letter grade using switch function") 
 {

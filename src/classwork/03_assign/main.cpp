@@ -10,6 +10,7 @@ using std::cout;    using std::cin;
 
 int main() 
 {	
+	
 	// get input from user
 	int grade_from_user;
 	cout << "Please input in a numeric grade between 0 and 100: ";

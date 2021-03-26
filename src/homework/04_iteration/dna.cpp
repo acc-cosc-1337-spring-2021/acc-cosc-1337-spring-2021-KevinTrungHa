@@ -19,9 +19,6 @@ double get_gc_content(const string& dna)
     return cnt/dna.size();
 }
 
-
-
-
 /*
 Write code for function get_reverse_string that
 accepts a string parameter and returns a string reversed.
@@ -35,11 +32,6 @@ string get_reverse_string(string dna)
     }
     return reverse;
 }
-
-
-
-
-
 
 /*
 Write prototype for function get_dna_complement that

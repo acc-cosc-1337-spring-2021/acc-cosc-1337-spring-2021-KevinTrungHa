@@ -1,6 +1,5 @@
 #include <iostream>
-using std::cout;
-using std::cin;
+using namespace std;
 
 #include "tic_tac_toe.h"
 
@@ -9,28 +8,23 @@ char play_again;
 int main() 
 {
 	TicTacToe game;
-	string first_player;
+	string player;
+	int position;
 
-	cout<<"Please enter either X or O as first player: \n";
-	cin>>first_player;
+	cout<<"Tic Tac Toe board game\n";
+	cout<<"Player 1 please enter X or O to begin: ";
+	cin>>player;
 
-	game.start_game(first_player);
+	game.start_game(player);
+	game.display_board();
 
 	do
-
 	{
-		int position;
-		cout<<"Please enter a position between 1 to 9: \n";
+		cout<<"Player "<<game.get_player()<<" Input between 1 to 9 to play. \nEnter '10' to close the board: ";
 		cin>>position;
-
 		game.mark_board(position);
+		game.display_board();
 
-		cout<<"Please input Y or y to play again: \n";
-		cin>>play_again;
-	}
-	while (play_again == 'Y' || play_again == 'y');
-
-	cout<<"Thanks for playing Tic Tac Toe game!";
-
-		return 0;
+	} while(position != 10);
+	return 0;
 }

@@ -20,7 +20,7 @@ int main()
 
 	do
 	{
-		cout<<"Player "<<game.get_player()<<" Input between 1 to 9 to play. \nEnter '10' to close the board: ";
+		cout<<"Player "<<game.get_player()<<" Please input number between 1 to 9 to play. \nPlease enter '10' to close the board: ";
 		cin>>position;
 		game.mark_board(position);
 		game.display_board();

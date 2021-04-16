@@ -1,36 +1,33 @@
-//h
+#ifndef TIC_TAC_TOE_H
+#define TIC_TAC_TOE_H
+#include<string>
+#include<vector>
+#include<iostream>
+using std::string;  using std::vector;
 
-#include <string>
-using std::string;
+class TicTacToe
+{
+friend std::ostream& operator<<(std::ostream& out, const TicTacToe& game);
+friend std::istream& operator>>(std::istream& in, TicTacToe& game);
 
-#include <vector>
-using std::vector;
+public:
+    bool game_over();
+    void start_game(string first_player);
+    void mark_board(int position);
+    string get_player()const{return player;}
+    string get_winner(){return winner;}
 
-//set up class for tic tac toe game
-class Game
-{   
-    //public functions of class Tictactoe
-    public:
+private:
+    void set_next_player();
+    bool check_board_full();
+    void clear_board();
+    void set_winner();
+    bool check_column_win();
+    bool check_row_win();
+    bool check_diagonal_win();
 
-        bool game_over();
-        void start_game(string first_player);
-        void mark_board(int position);
-        string get_player() const{return player;}
-        void display_board() const;
-        string get_winner(){return winner;}
-
-    //private functions of class Tictactoe
-    private:
-
-        void set_next_player();
-        bool check_board_full();
-        void clear_board();
-        bool check_column_win();
-        bool check_row_win();
-        bool check_diagonal_win();
-        void set_winner();
-
-        //class private data
-        vector<string> pegs{9, " "}; //initialize to 9 spaces
-        string player, winner;
+    string player, winner;
+    vector<string> pegs{" "," "," "," "," "," "," "," "," "};
 };
+
+#endif

@@ -1,62 +1,59 @@
-#include <iostream>
-using namespace std;
-
 #include "tic_tac_toe.h"
+#include "tic_tac_toe_manager.h"
+#include<iostream>
+#include<iomanip>
+using std::cout; using std::cin;
 
 int main() 
 {
-	Game game;
-	string player;
-	int position;
-	string again = "Y";
-
-	while(again == "Y" || again == "y")
+	TicTacToeManager manager;
+	int o, x, t;
+	string choice, again = "y";
+	while(again == "y" || again == "Y")
 	{
-			cout<<"Tic Tac Toe board game\n";
-			cout<<"Player 1 please enter X or O to begin: ";
-			cin>>player; 
-
-		while(player != "X" || player != "O")
+		TicTacToe game;
+		//input and validation
+		cout<<"Would you like to play as X or as O?\n";
+		cin>>choice;
+		while(!(choice == "X" || choice == "x" || choice == "O" || choice == "o"))
 		{
-			cout<<"You're player 1, please choose between X or O to continue: ";
-			cin>>player;
-			if(player == "X" || player == "O")
-			{
-				break;
-			}
-
+			cout<<"That is not a valid choice, pick X or O.\n";
+			cin>>choice;
 		}
-	
-	
-		game.start_game(player);
-		game.display_board();
+		if(choice == "x")
+		{
+			choice = "X";
+		}
+		else if(choice == "o")
+		{
+			choice = "O";
+		}
+		game.start_game(choice);
 
+		//game loop
 		while(game.game_over() == false)
 		{
-			cout<<"Player "<<game.get_player()<<" Please input number between 1 to 9 to play. \nPlease enter '10' to close the board: ";
-			cin>>position;
-
-			while (position < 1 || position > 9)
-			{
-				cout<<"Please input in the position that is greater than 1 and less than 9: ";
-				cin>>position;
-			}
-			game.mark_board(position);
-			game.display_board();
-
-		} 
-
-		if(game.get_winner() == "C")
-		{
-			cout<<"Cat's Scratch!";
+			cin>>game;
+			cout<<game;
+			cout<<"\n";
 		}
-		
-		else
-		cout<<"Player "<<game.get_winner()<<" has WON!\n";
-		cout<<"Enter Y to play again: ";
-		cin>>again;
-		
+	manager.save_game(game);
+	manager.get_winner_totals(o,x,t);
+	if(game.get_winner() == "C")
+	{
+		cout<<"Game over. It's a tie.\n";
 	}
-
+	else
+		cout<<"Game over. "<<game.get_winner()<<" Has won.\n";
+	cout<<std::setfill('-')<<std::setw(30)<<"-\n";
+	cout<<"Winner totals\nX: "<<x<<"\nO: "<<o<<"\nTies: "<<t<<"\n";
+	cout<<"Would you like to play again? Y/N: \n";
+	cin>>again;
+	}
+	cout<<std::setfill('-')<<std::setw(30)<<"-\n";
+	cout<<"Games played this session: "<<(o+t+x)<<"\n";
+	cout<<"Winner totals this session:\nX: "<<x<<"\nO: "<<o<<"\nTies: "<<t<<"\n\n";
+	cout<<"--Game History--\n";
+	cout<<manager;
 	return 0;
 }

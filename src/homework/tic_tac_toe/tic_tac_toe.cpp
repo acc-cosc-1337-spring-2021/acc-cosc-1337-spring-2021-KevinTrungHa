@@ -6,7 +6,7 @@ using std::cout; using std::cin;
 //Public functions of class TicTacToe
 
 //Friend functions:
-std::ostream& operator<<(std::ostream& out, const TicTacToe& game)  //Usage: in main, cout<<game.   Replaces output to screen
+std::ostream& operator<<(std::ostream& out, const TicTacToe& game) 
 {
   out<<"Displaying board: \n";
 
@@ -24,7 +24,7 @@ std::ostream& operator<<(std::ostream& out, const TicTacToe& game)  //Usage: in 
           out<<"|";
         }
         
-        if(i == 2 || i == 5 || i == 8)  //Line break after first, second, and third row are printed out
+        if(i == 2 || i == 5 || i == 8) 
         {
           out<<"\n";
         }
@@ -43,7 +43,7 @@ std::ostream& operator<<(std::ostream& out, const TicTacToe& game)  //Usage: in 
           out<<"|";
         }
         
-        if(i == 3 || i == 7 || i == 11 || i == 15)  //Line break after first, second, third, and fourth row are printed out
+        if(i == 3 || i == 7 || i == 11 || i == 15)  
         {
           out<<"\n";
         }
@@ -55,8 +55,6 @@ std::ostream& operator<<(std::ostream& out, const TicTacToe& game)  //Usage: in 
 
 std::istream& operator>>(std::istream& in, TicTacToe& game)   //Replaces code that captures keyboard data
 {
-  //The cin for position code that we removed from main should be in this fcn
-  //ts going to pull like game.balance (or some function)
 
   //Decide between 3x3 or 4x4 grid
   if(game.pegs.size() == 9)  //3x3 board size
@@ -67,11 +65,11 @@ std::istream& operator>>(std::istream& in, TicTacToe& game)   //Replaces code th
     do
     {
           
-      cout<<"It is " << game.get_player() << "'s turn. \n"; //Use string get_player() const function to say who's turn it is.
+      cout<<"It is " << game.get_player() << "'s turn. \n"; 
       cout<<"Enter an integer position (1-9): \n";  
       in>> position;
     }
-    while(!(position <= 9 && position >= 1)); //Validates input position to be 1-9
+    while(!(position <= 9 && position >= 1));
 
     game.mark_board(position); 
 
@@ -84,17 +82,16 @@ std::istream& operator>>(std::istream& in, TicTacToe& game)   //Replaces code th
     do
     {
           
-      cout<<"It is " << game.get_player() << "'s turn. \n"; //Use string get_player() const function to say who's turn it is.
-      cout<<"Enter an integer position (1-16): \n";  
+      cout<<"It is " << game.get_player() << "'s turn. \n"; 
       in>> position;
     }
-    while(!(position <= 16 && position >= 1)); //Validates input position to be 1-9
+    while(!(position <= 16 && position >= 1)); 
 
     game.mark_board(position); 
 
     return in;
   }
-  return in;  //Also might be problematic
+  return in; 
 }
 
 bool TicTacToe::game_over()
@@ -114,12 +111,12 @@ bool TicTacToe::game_over()
     set_winner();
     return true;
   }
-  else if(check_board_full() == true) //This only trips if column, row, and diagonal functions return false. Thus triggers tie.
+  else if(check_board_full() == true) 
   {
-    winner = "C"; //Stands for CAT
+    winner = "C"; 
     return true;
   }
-  else //Only trips if column, row, and diagnal fcns return false AND there is no tie
+  else 
   {
     return false;
   }
@@ -127,10 +124,10 @@ bool TicTacToe::game_over()
 
 void TicTacToe::start_game(string first_player)
 {
-  //Ensure function argument is X or O 
+  
   if(first_player == "X" || first_player == "O")
   {
-    player = first_player;  //player is a private string in the class
+    player = first_player; 
 
     clear_board(); 
   }
@@ -142,79 +139,27 @@ void TicTacToe::start_game(string first_player)
 
 void TicTacToe::mark_board(int position)
 {
-  //"Mark vector w position -1 equal to player"
-  pegs.at(position-1) = player;  //Writes over position with X or O in vector
+ 
+  pegs.at(position-1) = player;  
 
   set_next_player();
 }
 
 string TicTacToe::get_player() const
 {
-  return player; //Player is always X or O
+  return player;
 }
 
-/* Removed fcn; replaced w/ overloading
-void TicTacToe::display_board() const
-{
-  //Iterate through vector to display board in 3x3 format
-  for(int i = 0; i < 9; i++)
-    {
-      cout<<pegs[i];
-      if(i == 0 || i == 1 || i == 3 || i == 4 || i == 6 || i == 7)
-      {
-        cout<<"|";
-      }
-      
-      if(i == 2 || i == 5 || i == 8)  //Line break after first, second, and third row are printed out
-      {
-        cout<<"\n";
-      }
-    }
-}
-*/
 
 string TicTacToe::get_winner() const
 {
   return winner;
 }
 
-//Private functions of class TicTacToe
+
 
 bool TicTacToe::check_column_win()
 {
-  /* All these conditions have been pasted into derrived class fcns; Now, this only returns false
-  
-  //X win conditions
-  if(pegs[0] == "X" && pegs[3] == "X" && pegs[6] == "X")
-  {
-    return true;
-  }
-  else if(pegs[1] == "X" && pegs[4] == "X" && pegs[7] == "X")
-  {
-    return true;
-  }
-  else if(pegs[2] == "X" && pegs[5] == "X" && pegs[8] == "X")
-  {
-    return true;
-  }
-  //O win condition
-  if(pegs[0] == "O" && pegs[3] == "O" && pegs[6] == "O")
-  {
-    return true;
-  }
-  else if(pegs[1] == "O" && pegs[4] == "O" && pegs[7] == "O")
-  {
-    return true;
-  }
-  else if(pegs[2] == "O" && pegs[5] == "O" && pegs[8] == "O")
-  {
-    return true;
-  }
-  else //If nobody wins, fcn returns false
-  {
-    return false;
-  }
-  */
 
   return false;
   
@@ -222,71 +167,17 @@ bool TicTacToe::check_column_win()
 
 bool TicTacToe::check_row_win()
 {
-  /*
-  //X win conditions
-  if(pegs[0] == "X" && pegs[1] == "X" && pegs[2] == "X")
-  {
-    return true;
-  }
-  else if(pegs[3] == "X" && pegs[4] == "X" && pegs[5] == "X")
-  {
-    return true;
-  }
-  else if(pegs[6] == "X" && pegs[7] == "X" && pegs[8] == "X")
-  {
-    return true;
-  }
-  //O win condition
-  if(pegs[0] == "O" && pegs[1] == "O" && pegs[2] == "O")
-  {
-    return true;
-  }
-  else if(pegs[3] == "O" && pegs[4] == "O" && pegs[5] == "O")
-  {
-    return true;
-  }
-  else if(pegs[6] == "O" && pegs[7] == "O" && pegs[8] == "O")
-  {
-    return true;
-  }
-  else //If nobody wins, fcn returns false
-  {
-    return false;
-  }
-  */
+
   return false;
 }
 
 bool TicTacToe::check_diagonal_win()
 {
-  /*
-  //X win conditions
-  if(pegs[0] == "X" && pegs[4] == "X" && pegs[8] == "X")
-  {
-    return true;
-  }
-  else if(pegs[6] == "X" && pegs[4] == "X" && pegs[2] == "X")
-  {
-    return true;
-  }
-  //O win conditions
-  if(pegs[0] == "O" && pegs[4] == "O" && pegs[8] == "O")
-  {
-    return true;
-  }
-  else if(pegs[6] == "O" && pegs[4] == "O" && pegs[2] == "O")
-  {
-    return true;
-  }
-  else //If nobody wins, fcn returns false
-  {
-    return false;
-  }
-  */
+  
   return false;
 }
 
-void TicTacToe::set_winner()  //Diagnose the backend of this fcn
+void TicTacToe::set_winner()
 {
   if(player == "X")
   {
@@ -305,7 +196,7 @@ void TicTacToe::set_winner()  //Diagnose the backend of this fcn
 
 void TicTacToe::set_next_player()
 {
-  //Switches string player from X to O; or from O to X. It flip-flops.
+  
   if(player == "X")
   {
     player = "O";
@@ -330,7 +221,7 @@ bool TicTacToe::check_board_full()
       return false;
     }
   }
-  return true; //This only trips if the program goes through the for loop loop without triggering the return false (in if statement)
+  return true; 
 }
 
 void TicTacToe::clear_board()
@@ -340,5 +231,4 @@ void TicTacToe::clear_board()
     peg = " ";
   }
   
-  //for(std::size_t i = 0; i < pegs.size(); i++) Old loop
 }

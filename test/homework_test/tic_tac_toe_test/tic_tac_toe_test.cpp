@@ -12,10 +12,6 @@ using std::cout; using std::cin;
 #include <memory>
 using std::unique_ptr; using std::make_unique;
 
-//For test cases, initialize like this:
-// unique_ptr<TicTacToe> game = make_unique<TicTacToe3>();
-//or use <TicTacToe4> for 4x4 grid
-
 
 TEST_CASE("Verify Test Configuration", "verification") {
 	REQUIRE(true == true);
@@ -25,7 +21,7 @@ TEST_CASE("Test TicTacToe start_game, mark_board, and game_over fcns", "Game end
 {
   TicTacToeManager manager;
 
-  int x = 0;  //Local variables for use with get_winner_total
+  int x = 0;  
   int o = 0;
   int t = 0;
   
@@ -52,10 +48,10 @@ TEST_CASE("Test TicTacToe start_game, mark_board, and game_over fcns", "Game end
   game1->mark_board(9);
   REQUIRE(game1->game_over() == true);
 
-  //After all 9 slots are selected:
-  REQUIRE(game1->get_winner() == "C"); //Check string winner is C by running public get_winner fcn
+ 
+  REQUIRE(game1->get_winner() == "C"); 
 
-  manager.save_game(game1); //Saves game 3 to manager vector
+  manager.save_game(game1); 
   manager.get_winner_total(o, x, t);
   REQUIRE(o == 0);
   REQUIRE(x == 0);
@@ -85,7 +81,7 @@ TEST_CASE("Test win by first column")
 {
   TicTacToeManager manager;
 
-  int x = 0;  //Local variables for use with get_winner_total
+  int x = 0;  
   int o = 0;
   int t = 0;
   
@@ -104,7 +100,7 @@ TEST_CASE("Test win by first column")
   REQUIRE(game->game_over() == true);
   REQUIRE(game->get_winner() == "X");
 
-  manager.save_game(game); //Saves game 3 to manager vector
+  manager.save_game(game); 
   manager.get_winner_total(o, x, t);
   REQUIRE(o == 0);
   REQUIRE(x == 1);
@@ -116,7 +112,7 @@ TEST_CASE("Test win by second column")
 {
   TicTacToeManager manager;
 
-  int x = 0;  //Local variables for use with get_winner_total
+  int x = 0;  
   int o = 0;
   int t = 0;
   
@@ -139,7 +135,7 @@ TEST_CASE("Test win by second column")
   REQUIRE(game->game_over() == true);
   REQUIRE(game->get_winner() == "X");
 
-  manager.save_game(game); //Saves game 3 to manager vector
+  manager.save_game(game); 
   manager.get_winner_total(o, x, t);
   REQUIRE(o == 0);
   REQUIRE(x == 1);
@@ -150,7 +146,7 @@ TEST_CASE("Test win by third column")
 {
   TicTacToeManager manager;
 
-  int x = 0;  //Local variables for use with get_winner_total
+  int x = 0;  
   int o = 0;
   int t = 0;
   
@@ -180,7 +176,7 @@ TEST_CASE("Test win by first row")
 {
   TicTacToeManager manager;
 
-  int x = 0;  //Local variables for use with get_winner_total
+  int x = 0;  
   int o = 0;
   int t = 0;
   
@@ -210,7 +206,7 @@ TEST_CASE("Test win by second row")
 {
   TicTacToeManager manager;
 
-  int x = 0;  //Local variables for use with get_winner_total
+  int x = 0; 
   int o = 0;
   int t = 0;
   
@@ -229,7 +225,7 @@ TEST_CASE("Test win by second row")
   REQUIRE(game->game_over() == true);
   REQUIRE(game->get_winner() == "X");
 
-  manager.save_game(game); //Saves game 3 to manager vector
+  manager.save_game(game); 
   manager.get_winner_total(o, x, t);
   REQUIRE(o == 0);
   REQUIRE(x == 1);
@@ -240,7 +236,7 @@ TEST_CASE("Test win by third row")
 {
   TicTacToeManager manager;
 
-  int x = 0;  //Local variables for use with get_winner_total
+  int x = 0;  
   int o = 0;
   int t = 0;
   
@@ -259,7 +255,7 @@ TEST_CASE("Test win by third row")
   REQUIRE(game->game_over() == true);
   REQUIRE(game->get_winner() == "X");
 
-  manager.save_game(game); //Saves game 3 to manager vector
+  manager.save_game(game); 
   manager.get_winner_total(o, x, t);
   REQUIRE(o == 0);
   REQUIRE(x == 1);
@@ -270,7 +266,7 @@ TEST_CASE("Test win diagonally from top left")
 {
   TicTacToeManager manager;
 
-  int x = 0;  //Local variables for use with get_winner_total
+  int x = 0;  
   int o = 0;
   int t = 0;
   
@@ -300,7 +296,7 @@ TEST_CASE("Test win diagonally from bottom left")
 {
   TicTacToeManager manager;
 
-  int x = 0;  //Local variables for use with get_winner_total
+  int x = 0; 
   int o = 0;
   int t = 0;
   
@@ -330,7 +326,7 @@ TEST_CASE("Test TicTacToe manager")
 {
   TicTacToeManager manager;
 
-  int x = 0;  //Local variables for use with get_winner_total
+  int x = 0; 
   int o = 0;
   int t = 0;
 
@@ -417,29 +413,7 @@ TEST_CASE("Test TicTacToe manager")
 
 }
 
-
-
-
-  
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-//4x4 Test Cases
+//4x4
 
 TEST_CASE("Test TicTacToe start_game, mark_board, and game_over fcns 4", "Game ends in tie")
 {
@@ -487,10 +461,10 @@ TEST_CASE("Test TicTacToe start_game, mark_board, and game_over fcns 4", "Game e
   REQUIRE(game->game_over() == true);
 
 
-  //After all 9 slots are selected:
-  REQUIRE(game->get_winner() == "C"); //Check string winner is C by running public get_winner fcn
+ 
+  REQUIRE(game->get_winner() == "C"); 
 
-  manager.save_game(game); //Saves game 3 to manager vector
+  manager.save_game(game); 
   manager.get_winner_total(o, x, t);
   REQUIRE(o == 0);
   REQUIRE(x == 0);
@@ -517,7 +491,7 @@ TEST_CASE("Test win by first column 4")
 {
   TicTacToeManager manager;
 
-  int x = 0;  //Local variables for use with get_winner_total
+  int x = 0;  
   int o = 0;
   int t = 0;
   
@@ -552,7 +526,7 @@ TEST_CASE("Test win by second column 4")
 {
   TicTacToeManager manager;
 
-  int x = 0;  //Local variables for use with get_winner_total
+  int x = 0;  
   int o = 0;
   int t = 0;
   
@@ -586,7 +560,7 @@ TEST_CASE("Test win by third column 4")
 {
   TicTacToeManager manager;
 
-  int x = 0;  //Local variables for use with get_winner_total
+  int x = 0;  
   int o = 0;
   int t = 0;
   
@@ -620,7 +594,7 @@ TEST_CASE("Test win by fourth column 4")
 {
   TicTacToeManager manager;
 
-  int x = 0;  //Local variables for use with get_winner_total
+  int x = 0;  
   int o = 0;
   int t = 0;
   
@@ -654,7 +628,7 @@ TEST_CASE("Test win by first row 4")
 {
   TicTacToeManager manager;
 
-  int x = 0;  //Local variables for use with get_winner_total
+  int x = 0;  
   int o = 0;
   int t = 0;
   

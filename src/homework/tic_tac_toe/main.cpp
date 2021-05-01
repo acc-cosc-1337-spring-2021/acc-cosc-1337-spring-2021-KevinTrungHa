@@ -6,6 +6,7 @@ using std::string;
 
 #include "tic_tac_toe.h"
 #include "tic_tac_toe_manager.h"
+#include "tic_tac_toe_data.h"
 #include "tic_tac_toe_3.h"
 #include "tic_tac_toe_4.h"
 
@@ -14,8 +15,9 @@ string go_again;
 int main() 
 {
   
+  TicTacToeData data;
+  TicTacToeManager manager(data);  
   
-  TicTacToeManager manager;  
   int x;  
   int o;
   int t;
@@ -45,7 +47,6 @@ int main()
     }
     while(!(game_type == "3" || game_type == "4")); 
 
-    
     string first_player;
 
     do
@@ -76,12 +77,12 @@ int main()
     }
     while(!(game->game_over()));
     
+    //At the end of every game:
+    
   
     cout<<"GAME OVER. The winner was: " << game->get_winner() << "\n";
 
     manager.save_game(game); 
- 
- 
     manager.get_winner_total(o, x, t); 
     cout<<"Games Winning Tally: \n";
     cout<<"O wins: " << o << "\n";
@@ -97,11 +98,10 @@ int main()
 	
   cout<<"-------------------------------------------------------------------- \n";
   cout<<"Displaying game boards history: \n";
-  cout<<manager; //Displays games history
-
-  //Display the final/running scores
-  manager.get_winner_total(o, x, t); //Fcn updates o, x, and t to the correct values
-  cout<<"Final Games Winning Tally: \n";
+  cout<<manager; 
+  
+  manager.get_winner_total(o, x, t); 
+  cout<<"Cumulative Games Winning Tally: \n";
   cout<<"O wins: " << o << "\n";
   cout<<"X wins: " << x << "\n";
   cout<<"Ties: " << t << "\n\n";
